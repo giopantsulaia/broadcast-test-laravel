@@ -17,7 +17,7 @@ return [
 
     'stateful' => explode(',', env('SANCTUM_STATEFUL_DOMAINS', sprintf(
         '%s%s',
-        'localhost,localhost:3000,127.0.0.1,127.0.0.1:8000,::1',
+        'localhost,localhost:5173,127.0.0.1,127.0.0.1:8000,::1',
         Sanctum::currentApplicationUrlWithPort()
     ))),
 
@@ -46,8 +46,6 @@ return [
     |
     */
 
-    'expiration' => null,
-
     /*
     |--------------------------------------------------------------------------
     | Sanctum Middleware
@@ -64,5 +62,7 @@ return [
         'encrypt_cookies' => App\Http\Middleware\EncryptCookies::class,
     ],
 
-    'expiration' => 60
+    'expiration' => 60,
+
+    'prefix' => 'api'
 ];
