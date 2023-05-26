@@ -16,3 +16,7 @@ use Illuminate\Support\Facades\Broadcast;
 Broadcast::channel('online', function ($user) {
     return ['id' => $user->id, 'name' => $user->name];
 });
+
+Broadcast::channel('messages', function ($user) {
+    return true;
+});
