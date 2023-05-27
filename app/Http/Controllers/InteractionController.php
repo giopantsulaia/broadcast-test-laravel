@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Events\MessageSent;
+use App\Events\UserGreeted;
+use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-class MessageController extends Controller
+class InteractionController extends Controller
 {
     public function sendMessage(Request $request): JsonResponse
     {
@@ -18,5 +20,17 @@ class MessageController extends Controller
         event(new MessageSent($textMessage));
 
         return response()->json(['message' => 'message sent'], 200);
+    }
+
+    public function greet(User $user): JsonResponse
+    {
+        $greetings = (object)[
+            'to' => $user->id,
+            'from' => auth('sanctum')->user()->name
+        ];
+
+        event(new UserGreeted($greetings));
+
+        return response()->json(['message' => 'success'], 200);
     }
 }

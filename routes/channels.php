@@ -20,3 +20,7 @@ Broadcast::channel('online', function ($user) {
 Broadcast::channel('messages', function ($user) {
     return true;
 });
+
+Broadcast::channel('greetings.{userId}', function ($user, $userId) {
+    return $user->id === (int)$userId;
+});
