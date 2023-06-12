@@ -1,5 +1,6 @@
 <?php
 
+use App\Broadcasting\OnlineChannel;
 use Illuminate\Support\Facades\Broadcast;
 
 /*
@@ -13,13 +14,7 @@ use Illuminate\Support\Facades\Broadcast;
 |
 */
 
-Broadcast::channel('online', function ($user) {
-    return ['id' => $user->id, 'name' => $user->name];
-});
-
-Broadcast::channel('messages', function ($user) {
-    return true;
-});
+Broadcast::channel('online', OnlineChannel::class);
 
 Broadcast::channel('greetings.{userId}', function ($user, $userId) {
     return $user->id === (int)$userId;

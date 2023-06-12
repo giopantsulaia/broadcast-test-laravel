@@ -21,6 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/login', [AuthController::class,'login'])->name('login')->middleware('guest');
+
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/logout', [AuthController::class,'logout'])->name('logout');
     Route::post('send-message', [InteractionController::class, 'sendMessage'])->name('message');
