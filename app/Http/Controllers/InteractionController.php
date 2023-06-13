@@ -15,6 +15,7 @@ class InteractionController extends Controller
         $textMessage = $request->validate([
             'text' => ['string','max:48']
         ]);
+
         $textMessage['sender'] = auth('sanctum')->user()->name;
 
         event(new MessageSent($textMessage));

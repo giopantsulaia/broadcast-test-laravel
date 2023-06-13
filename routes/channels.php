@@ -14,8 +14,11 @@ use Illuminate\Support\Facades\Broadcast;
 |
 */
 
+// GOOD
 Broadcast::channel('online', OnlineChannel::class);
 
+
+// BAD
 Broadcast::channel('greetings.{userId}', function ($user, $userId) {
     return $user->id === (int)$userId;
 });
